@@ -25,9 +25,11 @@ body {
   border-radius: 8px;
   flex: 1;
   display: flex;
-  position: relative; }
+  position: relative;
+  overflow: hidden; }
 
 .screen span {
+  transition: all 0.3s ease;
   position: absolute; }
 
 .screen svg {

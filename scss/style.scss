@@ -30,9 +30,11 @@ body {
   flex: 1;
   display: flex;
   position: relative;
+  overflow: hidden;
 }
 
 .screen span {
+  transition: all 0.3s ease;
   position: absolute;
 }
 

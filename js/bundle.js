@@ -37,7 +37,7 @@ const createShape = (type) => {
 
 
 const getRandomSize = () => {
-  return Math.floor(Math.random() * 100);
+  return Math.floor(Math.random() * 110);
 }
 
 const getRandomColor = () => {
@@ -53,7 +53,7 @@ const getRandomShareType = () => {
 const insertShare = (share) => {
   const container = document.querySelector('.screen');
   const shareWrapper = document.createElement('span');
-  const top = `${getRandomSize()}`;
+  let top = `${getRandomSize()}`;
   const left = `${getRandomSize()}`;
   shareWrapper.classList.add('figure');
   shareWrapper.style.top = `${top}%`;
@@ -71,6 +71,31 @@ const insertShare = (share) => {
   container.appendChild(shareWrapper);
 
   shareWrapper.addEventListener("click", deleteShare);
+  shareMove(shareWrapper, top);
+
+}
+
+const shareMove = (shareWrapper, top) => {
+  let id = null;
+  clearInterval(id);
+  id = setInterval(frame, 100);
+  function frame() {
+    let bottom = shareWrapper.getBoundingClientRect().bottom;
+    if (bottom < 0 ) {
+      clearInterval(id);
+      decreaseCount(initialCount);
+      shareWrapper.remove();
+
+      if(initialCount < 1) {
+        disabledButton(buttonMinus)
+        disabledButton(buttonPlus)
+      }
+
+    } else {
+      top--;
+      shareWrapper.style.top = top + '%';
+    }
+  }
 }
 
 
@@ -127,7 +152,6 @@ const addShare = () => {
 
 
 const removeShare = () => {
-
   const figure = document.querySelector('.figure');
 
   decreaseCount(initialCount)
@@ -138,7 +162,6 @@ const removeShare = () => {
   }
 
   figure.remove();
-
 }
 
 const startGame = () => {
