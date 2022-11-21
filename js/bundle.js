@@ -35,9 +35,8 @@ const createShape = (type) => {
   }
 }
 
-
 const getRandomSize = () => {
-  return Math.floor(Math.random() * 110);
+  return Math.floor(Math.random() * (110 - 20 + 1) + 30);
 }
 
 const getRandomColor = () => {
@@ -78,7 +77,7 @@ const insertShare = (share) => {
 const shareMove = (shareWrapper, top) => {
   let id = null;
   clearInterval(id);
-  id = setInterval(frame, 100);
+  id = setInterval(frame, 50);
   function frame() {
     let bottom = shareWrapper.getBoundingClientRect().bottom;
     if (bottom < 0 ) {
